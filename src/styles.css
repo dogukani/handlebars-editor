@@ -1,0 +1,363 @@
+/* Handlebars Editor - Default Theme */
+
+.hbs-editor {
+  /* Base colors */
+  --hbs-color-text: #24292f;
+  --hbs-color-background: #ffffff;
+  --hbs-color-border: #d1d5db;
+  --hbs-color-caret: #24292f;
+  --hbs-color-placeholder: #6b7280;
+  --hbs-color-focus-ring: #2563eb;
+
+  /* Syntax highlighting - balanced, readable palette */
+  --hbs-color-variable: #0550ae;
+  --hbs-color-variable-path: #0550ae;
+  --hbs-color-block-keyword: #8250df;
+  --hbs-color-block-param: #0550ae;
+  --hbs-color-helper: #953800;
+  --hbs-color-helper-arg: #0550ae;
+  --hbs-color-hash-key: #0550ae;
+  --hbs-color-hash-value: #0a3069;
+  --hbs-color-literal: #0a3069;
+  --hbs-color-data-var: #cf222e;
+  --hbs-color-subexpr-paren: #6b7280;
+  --hbs-color-comment: #6b7280;
+  --hbs-color-raw: #953800;
+  --hbs-color-brace: #9ca3af;
+  --hbs-color-error: #cf222e;
+  --hbs-color-error-bg: rgba(207, 34, 46, 0.1);
+
+  /* Autocomplete */
+  --hbs-color-autocomplete-bg: #ffffff;
+  --hbs-color-autocomplete-selected: #f3f4f6;
+
+  /* Dimensions */
+  --hbs-autocomplete-min-width: 160px;
+  --hbs-autocomplete-max-height: 200px;
+  --hbs-padding: 12px;
+  --hbs-font-size: 14px;
+  --hbs-line-height: 1.6;
+  --hbs-font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --hbs-border-radius: 6px;
+  --hbs-tab-size: 2;
+
+  position: relative;
+  flex: 1;
+  font-family: var(--hbs-font-family);
+  font-size: var(--hbs-font-size);
+  line-height: var(--hbs-line-height);
+  background-color: var(--hbs-color-background);
+  border-radius: var(--hbs-border-radius);
+  -webkit-text-size-adjust: 100%;
+  overflow: hidden;
+}
+
+/* Dark theme */
+.hbs-editor.hbs-theme-dark {
+  --hbs-color-text: #e6edf3;
+  --hbs-color-background: #0d1117;
+  --hbs-color-border: #30363d;
+  --hbs-color-caret: #e6edf3;
+  --hbs-color-placeholder: #6e7681;
+  --hbs-color-focus-ring: #58a6ff;
+
+  /* Syntax - GitHub dark inspired */
+  --hbs-color-variable: #79c0ff;
+  --hbs-color-variable-path: #79c0ff;
+  --hbs-color-block-keyword: #d2a8ff;
+  --hbs-color-block-param: #79c0ff;
+  --hbs-color-helper: #ffa657;
+  --hbs-color-helper-arg: #79c0ff;
+  --hbs-color-hash-key: #79c0ff;
+  --hbs-color-hash-value: #a5d6ff;
+  --hbs-color-literal: #a5d6ff;
+  --hbs-color-data-var: #ff7b72;
+  --hbs-color-subexpr-paren: #6e7681;
+  --hbs-color-comment: #6e7681;
+  --hbs-color-raw: #ffa657;
+  --hbs-color-brace: #6e7681;
+  --hbs-color-error: #f85149;
+  --hbs-color-error-bg: rgba(248, 81, 73, 0.15);
+
+  /* Autocomplete */
+  --hbs-color-autocomplete-bg: #161b22;
+  --hbs-color-autocomplete-selected: #30363d;
+}
+
+/* Highlight layer */
+.hbs-editor-highlight {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  border-radius: var(--hbs-border-radius);
+  border: 1px solid transparent;
+  background: transparent;
+  padding: var(--hbs-padding);
+  pointer-events: none;
+  color: var(--hbs-color-text);
+  /* Explicit font properties to match textarea exactly */
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  tab-size: var(--hbs-tab-size);
+  -moz-tab-size: var(--hbs-tab-size);
+  /* Match textarea scrollbar to ensure same content width */
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+/* Match textarea's trailing line space (textareas reserve space for cursor) */
+.hbs-editor-highlight::after {
+  content: '\200b';
+  display: inline;
+}
+
+/* Invisible scrollbar that takes up same space as textarea's */
+.hbs-editor-highlight::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.hbs-editor-highlight::-webkit-scrollbar-track,
+.hbs-editor-highlight::-webkit-scrollbar-thumb,
+.hbs-editor-highlight::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.hbs-editor-highlight code {
+  font-family: inherit;
+}
+
+.hbs-editor.hbs-readonly .hbs-editor-highlight {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Textarea layer */
+.hbs-editor-textarea {
+  position: absolute;
+  inset: 0;
+  resize: none;
+  border-radius: var(--hbs-border-radius);
+  border: 1px solid var(--hbs-color-border);
+  background: transparent;
+  padding: var(--hbs-padding);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: transparent;
+  caret-color: var(--hbs-color-caret);
+  outline: none;
+  tab-size: var(--hbs-tab-size);
+  -moz-tab-size: var(--hbs-tab-size);
+  scrollbar-width: thin;
+  scrollbar-color: var(--hbs-color-border) transparent;
+}
+
+.hbs-editor-textarea::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.hbs-editor-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hbs-editor-textarea::-webkit-scrollbar-thumb {
+  background: var(--hbs-color-border);
+  border: 2px solid var(--hbs-color-background);
+  border-radius: 5px;
+}
+
+.hbs-editor-textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--hbs-color-placeholder);
+}
+
+.hbs-editor-textarea::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.hbs-editor-textarea:focus {
+  border-color: var(--hbs-color-focus-ring);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.hbs-editor.hbs-theme-dark .hbs-editor-textarea:focus {
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.15);
+}
+
+.hbs-editor.hbs-readonly .hbs-editor-textarea {
+  cursor: default;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Placeholder */
+.hbs-editor-placeholder {
+  color: var(--hbs-color-placeholder);
+}
+
+/* Token styles */
+.hbs-token-variable {
+  color: var(--hbs-color-variable);
+}
+
+.hbs-token-variable-path {
+  color: var(--hbs-color-variable-path);
+}
+
+.hbs-token-block-keyword {
+  color: var(--hbs-color-block-keyword);
+  font-weight: 600;
+}
+
+.hbs-token-block-param {
+  color: var(--hbs-color-block-param);
+}
+
+.hbs-token-helper {
+  color: var(--hbs-color-helper);
+}
+
+.hbs-token-helper-arg {
+  color: var(--hbs-color-helper-arg);
+}
+
+.hbs-token-hash-key {
+  color: var(--hbs-color-hash-key);
+}
+
+.hbs-token-hash-value {
+  color: var(--hbs-color-hash-value);
+}
+
+.hbs-token-literal {
+  color: var(--hbs-color-literal);
+}
+
+.hbs-token-data-var {
+  color: var(--hbs-color-data-var);
+}
+
+.hbs-token-subexpr-paren {
+  color: var(--hbs-color-subexpr-paren);
+}
+
+.hbs-token-comment {
+  color: var(--hbs-color-comment);
+  font-style: italic;
+}
+
+.hbs-token-raw {
+  color: var(--hbs-color-raw);
+}
+
+.hbs-token-brace {
+  color: var(--hbs-color-brace);
+}
+
+.hbs-token-error {
+  color: var(--hbs-color-error);
+  background: var(--hbs-color-error-bg);
+  text-decoration: wavy underline var(--hbs-color-error);
+}
+
+/* Autocomplete dropdown (portal-based, rendered to document.body) */
+.hbs-autocomplete-portal {
+  position: fixed;
+  z-index: 9999;
+  min-width: 160px;
+  max-width: 240px;
+  overflow: auto;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /* Default theme values (can be overridden via inline styles) */
+  --hbs-color-text: #24292f;
+  --hbs-color-border: #d1d5db;
+  --hbs-color-placeholder: #6b7280;
+  --hbs-color-focus-ring: #2563eb;
+  --hbs-color-autocomplete-bg: #ffffff;
+  --hbs-color-autocomplete-selected: #f3f4f6;
+  --hbs-font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  border: 1px solid var(--hbs-color-border);
+  background: var(--hbs-color-autocomplete-bg);
+  font-family: var(--hbs-font-family);
+  color: var(--hbs-color-text);
+}
+
+.hbs-autocomplete-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-family: var(--hbs-font-family);
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  color: var(--hbs-color-text);
+}
+
+.hbs-autocomplete-item:hover,
+.hbs-autocomplete-item.hbs-selected {
+  background: var(--hbs-color-autocomplete-selected);
+}
+
+.hbs-autocomplete-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hbs-autocomplete-match {
+  color: var(--hbs-color-focus-ring);
+  font-weight: 600;
+}
+
+/* Type indicator */
+.hbs-autocomplete-type {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--hbs-color-placeholder);
+  opacity: 0.8;
+}
+
+/* Error bar */
+.hbs-error-bar {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: var(--hbs-border-radius);
+  border: 1px solid rgba(207, 34, 46, 0.4);
+  background: var(--hbs-color-error-bg);
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--hbs-color-error);
+}
+
+.hbs-error-bar svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.hbs-error-bar span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

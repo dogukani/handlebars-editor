@@ -1,0 +1,77 @@
+{
+  "name": "handlebars-editor-react",
+  "version": "0.1.4",
+  "description": "A React component for editing Handlebars templates with syntax highlighting and autocomplete",
+  "author": "Dogukan Incesu",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "check-types": "tsc --noEmit",
+    "lint": "biome lint src/ tests/",
+    "format": "biome format --write src/ tests/",
+    "check": "biome check src/ tests/",
+    "prepublishOnly": "pnpm run build",
+    "example": "pnpm --dir example dev",
+    "example:dist": "pnpm --dir example dev:dist",
+    "example:build": "pnpm --dir example build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.13",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "jsdom": "^24.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "keywords": [
+    "handlebars",
+    "editor",
+    "syntax-highlighting",
+    "react",
+    "autocomplete",
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dogukani/handlebars-editor"
+  },
+  "bugs": {
+    "url": "https://github.com/dogukani/handlebars-editor/issues"
+  },
+  "homepage": "https://dogukani.github.io/handlebars-editor"
+}
